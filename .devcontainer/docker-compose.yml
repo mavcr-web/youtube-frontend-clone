@@ -1,0 +1,14 @@
+version: "3.7"
+
+services:
+  api-youtube-frontend-clone:
+    container_name: api-youtube-frontend-clone
+    # restart: always
+    # ng serve --host 0.0.0.0 --disable-host-check
+    tty: true
+    build: .
+    ports:
+      - "4200:4200" 
+    volumes:
+      - ../:/api
+ 

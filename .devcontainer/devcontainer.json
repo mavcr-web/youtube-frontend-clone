@@ -1,0 +1,31 @@
+{
+  "name": "dev api-youtube-frontend-clone",
+  "dockerComposeFile": "./docker-compose.yml",
+  "service": "api-youtube-frontend-clone",
+  "workspaceFolder": "/api",
+  "shutdownAction": "stopCompose",
+
+  "settings": {},
+  "extensions": [
+    "Angular.ng-template",
+    "christian-kohler.path-intellisense",
+    "esbenp.prettier-vscode",
+    "formulahendry.auto-rename-tag",
+    "Gruntfuggly.todo-tree",
+    "johnpapa.Angular2",
+    "MS-CEINTL.vscode-language-pack-es",
+    "PKief.material-icon-theme",
+    "pranaygp.vscode-css-peek",
+    "usernamehw.errorlens",
+    "Zignd.html-css-class-completion",
+    "yzhang.markdown-all-in-one",
+    "bradlc.vscode-tailwindcss",
+    "pomdtr.excalidraw-editor",
+    "GitHub.copilot",
+    "GitHub.copilot-chat",
+    "bierner.markdown-mermaid",
+    "ms-vscode.vscode-speech",
+    "johnpapa.vscode-peacock"
+  ]
+
+}
