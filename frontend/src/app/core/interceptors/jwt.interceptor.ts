@@ -1,21 +1,27 @@
 import { HttpInterceptorFn } from '@angular/common/http';
-import { inject } from '@angular/core';
+import { afterNextRender, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { after } from 'node:test';
 import { catchError, throwError } from 'rxjs';
 
 export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
-  // const token = sessionStorage.getItem('token') || '';
+  let token = '';
+  afterNextRender(() => {
+    token = sessionStorage.getItem('token') || '';
+  });
 
-  // const reqClone = req.clone({
-  //   setHeaders: { authorization: `Bearer ${token}` },
-  // });
-
-  return next(req).pipe(
+  return next(
+    req.clone({
+      setHeaders: { authorization: `Bearer ${token}` },
+    })
+  ).pipe(
     catchError((err) => {
       if (err.status == 401) {
-        // const _router: Router = inject(Router);
-        // sessionStorage.removeItem('token');
-        // _router.navigate(['/auth/login']);
+        afterNextRender(() => {
+          const _router: Router = inject(Router);
+          _router.navigate(['/auth/login']);
+          sessionStorage.removeItem('token');
+        });
       }
       return throwError(() => {
         return new Error('Sin Autorizacion'); //_ TEST

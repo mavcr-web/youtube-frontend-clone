@@ -13,11 +13,20 @@ export class PlayComponent {
   _activatedRoute: ActivatedRoute = inject(ActivatedRoute);
   videoService: VideoService = inject(VideoService);
 
+  ngOnInit() {
+    this.getVideoUrl();
+  }
+
   getVideoUrl() {
     this._activatedRoute.params.subscribe(({ id }) => {
       this.videoService.getVideo(`${id}.mp4`).subscribe((data) => {
         document.getElementById('videoplayer')!.setAttribute('src', data.url);
       });
     });
+  }
+
+  shareUrl() {
+    const url = window.location.href;
+    navigator.clipboard.writeText(url);
   }
 }
