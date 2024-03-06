@@ -1,1 +1,28 @@
-<p>login works!</p>
+<div class="grid-container">
+    <form [formGroup]="loginForm" class="form">
+      <mat-form-field class="example-full-width">
+        <mat-label>username</mat-label>
+        <input type="text" formControlName="username" matInput placeholder="username">
+        @if (loginForm.get('username')?.touched && loginForm.get('username')?.errors?.['required']) {
+          <mat-error>
+            este campo es obligatorio
+          </mat-error>
+        }
+      </mat-form-field>
+  
+      <mat-form-field class="example-full-width">
+        <mat-label>password</mat-label>
+        <input type="password" formControlName="password" matInput placeholder="password">
+        @if (loginForm.get('password')?.touched && loginForm.get('password')?.errors?.['required']) {
+          <mat-error>
+            este campo es obligatorio
+          </mat-error>
+        }
+      </mat-form-field>
+  
+      <button mat-fab extended color="primary" [disabled]="loginForm.invalid" (click)="login()">
+        <mat-icon>add_circle_outline</mat-icon>
+        LOGIN
+      </button>
+    </form>
+  </div>
