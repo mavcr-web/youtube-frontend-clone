@@ -1,0 +1,1 @@
+import{ga as i,k as o}from"./chunk-4GDFKDID.js";var n=(()=>{let t=class t{constructor(){this.roleSubject=new o(""),this.role$=this.roleSubject.asObservable()}sendData(r){this.roleSubject.next(r)}};t.\u0275fac=function(a){return new(a||t)},t.\u0275prov=i({token:t,factory:t.\u0275fac,providedIn:"root"});let e=t;return e})();export{n as a};
