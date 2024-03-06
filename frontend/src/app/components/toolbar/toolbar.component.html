@@ -1,0 +1,30 @@
+<mat-toolbar color="primary" class="toolbar">
+  <button mat-icon-button (click)="matDrawerShow.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <button mat-icon-button [routerLink]="['/']">
+    <mat-icon>home</mat-icon>
+  </button>
+
+  <span class="example-spacer"></span>
+
+  <button
+    mat-icon-button
+    [routerLink]="['/login']"
+    [routerLinkActive]="['active']"
+  >
+    <mat-icon>login</mat-icon>
+  </button>
+
+  <button
+    mat-icon-button
+    [routerLink]="['/register']"
+    [routerLinkActive]="['active']"
+  >
+    <mat-icon>person_add</mat-icon>
+  </button>
+
+  <button mat-icon-button (click)="logout()">
+    <mat-icon>logout</mat-icon>
+  </button>
+</mat-toolbar>

@@ -1,0 +1,11 @@
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+.active {
+  background-color: #04aa6d;
+}
+.example-spacer {
+  flex: 1 1 auto;
+}
