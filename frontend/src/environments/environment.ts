@@ -2,6 +2,6 @@ const server = 'localhost';
 // const server = '';
 
 export const environment = {
-  production: true,
+  production: false,
   url: `http://${server}:3000`,
 };

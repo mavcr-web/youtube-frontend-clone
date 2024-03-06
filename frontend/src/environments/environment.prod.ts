@@ -2,6 +2,6 @@ const server = 'localhost';
 // const server = '';
 
 export const environment = {
-  production: false,
-  url: `http://${server}:3000`,
+  production: true,
+  url: 'https://ybc.orientalmarketnicaragua.com',
 };
