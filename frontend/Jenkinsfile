@@ -1,0 +1,13 @@
+pipeline{
+    agent any
+    stages{
+        stage('docker build'){
+            steps{
+                script{
+                    sh "docker build -t youtube-frontend ./frontend && docker image prune --filter label=stage=builder -f"
+                    // docker.build("mi-primera-imagen:${env.BUILD_NUMBER}")
+                }
+            }  
+        }
+    }
+}
