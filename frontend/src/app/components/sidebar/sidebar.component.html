@@ -16,7 +16,12 @@
       </button>
     </div>
 
-    <a mat-flat-button [routerLink]="['']" [routerLinkActive]="['active']">
+    <a
+      mat-flat-button
+      [routerLink]="['']"
+      [routerLinkActive]="['active']"
+      (click)="drawer.toggle()"
+    >
       HOME
     </a>
 
@@ -25,8 +30,9 @@
     @if ((role$|async)=='') {
     <a
       mat-flat-button
-      [routerLink]="['/auth/login']"
+      [routerLink]="['/login']"
       [routerLinkActive]="['active']"
+      (click)="drawer.toggle()"
     >
       Login
     </a>
@@ -38,8 +44,9 @@
     @if ((role$|async)=='') {
     <a
       mat-flat-button
-      [routerLink]="['/auth/register']"
+      [routerLink]="['/register']"
       [routerLinkActive]="['active']"
+      (click)="drawer.toggle()"
     >
       Register
     </a>
@@ -47,7 +54,7 @@
 
     <br />
 
-    @if ((role$|async)!='') {
+    <!-- @if ((role$|async)!='') {
     <a
       mat-flat-button
       [routerLink]="['/auth/change-password']"
@@ -55,296 +62,61 @@
     >
       Change Password
     </a>
-    } @if ((role$|async)=='admin') {
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title> Account </mat-panel-title>
-      </mat-expansion-panel-header>
-      <a
-        mat-flat-button
-        [routerLink]="['/account-form']"
-        [routerLinkActive]="['active']"
-      >
-        Account Form
-      </a>
-      <a
-        mat-flat-button
-        [routerLink]="['/account-list']"
-        [queryParams]="{ page: 1, limit: 10 }"
-        [routerLinkActive]="['active']"
-      >
-        Account List
-      </a>
-    </mat-expansion-panel>
-    } @if ((role$|async)=='admin') {
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title> Company </mat-panel-title>
-      </mat-expansion-panel-header>
-      <a
-        mat-flat-button
-        [routerLink]="['/company-form']"
-        [routerLinkActive]="['active']"
-      >
-        Company Form
-      </a>
-      <a
-        mat-flat-button
-        [routerLink]="['/company-list']"
-        [queryParams]="{ page: 1, limit: 10 }"
-        [routerLinkActive]="['active']"
-      >
-        Company List
-      </a>
-    </mat-expansion-panel>
-    } @if ((role$|async)=='admin') {
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title> Client </mat-panel-title>
-      </mat-expansion-panel-header>
-      <a
-        mat-flat-button
-        [routerLink]="['/client-form']"
-        [routerLinkActive]="['active']"
-      >
-        Client Form
-      </a>
-      <a
-        mat-flat-button
-        [routerLink]="['/client-list']"
-        [queryParams]="{ page: 1, limit: 10 }"
-        [routerLinkActive]="['active']"
-      >
-        Client List
-      </a>
-    </mat-expansion-panel>
-    } @if ((role$|async)=='admin') {
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title> Supplier </mat-panel-title>
-      </mat-expansion-panel-header>
-      <a
-        mat-flat-button
-        [routerLink]="['/supplier-form']"
-        [routerLinkActive]="['active']"
-      >
-        Supplier Form
-      </a>
-      <a
-        mat-flat-button
-        [routerLink]="['/supplier-list']"
-        [queryParams]="{ page: 1, limit: 10 }"
-        [routerLinkActive]="['active']"
-      >
-        Supplier List
-      </a>
-    </mat-expansion-panel>
-    } @if ((role$|async)=='admin') {
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title> Purchase </mat-panel-title>
-      </mat-expansion-panel-header>
-      <a
-        mat-flat-button
-        [routerLink]="['/purchase-form']"
-        [routerLinkActive]="['active']"
-      >
-        Purchase Form
-      </a>
-      <a
-        mat-flat-button
-        [routerLink]="['/purchase-list']"
-        [queryParams]="{ page: 1, limit: 10 }"
-        [routerLinkActive]="['active']"
-      >
-        Purchase List
-      </a>
-    </mat-expansion-panel>
-    } @if ((role$|async)=='admin') {
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title> Goods Receipt </mat-panel-title>
-      </mat-expansion-panel-header>
-      <a
-        mat-flat-button
-        [routerLink]="['/goods-receipt-form']"
-        [routerLinkActive]="['active']"
-      >
-        Goods Receipt Form
-      </a>
-      <a
-        mat-flat-button
-        [routerLink]="['/goods-receipt-list']"
-        [queryParams]="{ page: 1, limit: 10 }"
-        [routerLinkActive]="['active']"
-      >
-        Goods Receipt List
-      </a>
-    </mat-expansion-panel>
-    } @if ((role$|async)=='admin') {
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title> Item </mat-panel-title>
-      </mat-expansion-panel-header>
-      <a
-        mat-flat-button
-        [routerLink]="['/item-form']"
-        [routerLinkActive]="['active']"
-      >
-        Item Form
-      </a>
-      <a
-        mat-flat-button
-        [routerLink]="['/item-list']"
-        [queryParams]="{ page: 1, limit: 10 }"
-        [routerLinkActive]="['active']"
-      >
-        Item List
-      </a>
-    </mat-expansion-panel>
-    } @if ((role$|async)=='admin') {
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title> Item Price </mat-panel-title>
-      </mat-expansion-panel-header>
-      <a
-        mat-flat-button
-        [routerLink]="['/item-price-form']"
-        [routerLinkActive]="['active']"
-      >
-        Item Price Form
-      </a>
-    </mat-expansion-panel>
-    } @if ((role$|async)=='admin') {
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title> Currency </mat-panel-title>
-      </mat-expansion-panel-header>
-      <a
-        mat-flat-button
-        [routerLink]="['/currency-form']"
-        [routerLinkActive]="['active']"
-      >
-        Currency Form
-      </a>
-      <a
-        mat-flat-button
-        [routerLink]="['/currency-list']"
-        [queryParams]="{ page: 1, limit: 10 }"
-        [routerLinkActive]="['active']"
-      >
-        Currency List
-      </a>
-    </mat-expansion-panel>
-    }
+    }  -->
+    @if ((role$|async)=='user') {
 
-    <!--  -->
+    <a
+      mat-flat-button
+      [routerLink]="['/upload']"
+      [routerLinkActive]="['active']"
+      (click)="drawer.toggle()"
+    >
+      Upload
+    </a>
 
-    @if ((role$|async)=='admin') {
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title> Warehouse </mat-panel-title>
-      </mat-expansion-panel-header>
-      <a
-        mat-flat-button
-        [routerLink]="['/warehouse-form']"
-        [routerLinkActive]="['active']"
-      >
-        Warehouse Form
-      </a>
-      <a
-        mat-flat-button
-        [routerLink]="['/warehouse-list']"
-        [queryParams]="{ page: 1, limit: 10 }"
-        [routerLinkActive]="['active']"
-      >
-        Warehouse List
-      </a>
-    </mat-expansion-panel>
+    <br />
+
+    <a
+      mat-flat-button
+      [routerLink]="['/history']"
+      [routerLinkActive]="['active']"
+      (click)="drawer.toggle()"
+    >
+      History
+    </a>
+
+    <br />
     } @if ((role$|async)=='admin') {
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title> Warehouse Group </mat-panel-title>
-      </mat-expansion-panel-header>
-      <a
-        mat-flat-button
-        [routerLink]="['/warehouse-group-form']"
-        [routerLinkActive]="['active']"
-      >
-        Warehouse Group Form
-      </a>
-      <a
-        mat-flat-button
-        [routerLink]="['/warehouse-group-list']"
-        [queryParams]="{ page: 1, limit: 10 }"
-        [routerLinkActive]="['active']"
-      >
-        Warehouse Group List
-      </a>
-    </mat-expansion-panel>
-    } @if ((role$|async)=='admin') {
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title> User </mat-panel-title>
-      </mat-expansion-panel-header>
-      <a
-        mat-flat-button
-        [routerLink]="['/user-list']"
-        [queryParams]="{ page: 1, limit: 10 }"
-        [routerLinkActive]="['active']"
-      >
-        User-List
-      </a>
-    </mat-expansion-panel>
-    } @if ((role$|async)=='admin') {
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title> Client </mat-panel-title>
-      </mat-expansion-panel-header>
-      <a
-        mat-flat-button
-        [routerLink]="['/client-form']"
-        [routerLinkActive]="['active']"
-      >
-        Client Form
-      </a>
-      <a
-        mat-flat-button
-        [routerLink]="['/client-list']"
-        [queryParams]="{ page: 1, limit: 10 }"
-        [routerLinkActive]="['active']"
-      >
-        Client-List
-      </a>
-    </mat-expansion-panel>
-    } @if ((role$|async)=='admin') {
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title> Invoice </mat-panel-title>
-      </mat-expansion-panel-header>
-      <a
-        mat-flat-button
-        [routerLink]="['/invoice-builer']"
-        [routerLinkActive]="['active']"
-      >
-        Invoice-Builder
-      </a>
-      <a
-        mat-flat-button
-        [routerLink]="['/invoice-form']"
-        [routerLinkActive]="['active']"
-      >
-        Invoice-Form
-      </a>
-      <a
-        mat-flat-button
-        [routerLink]="['/invoice-list']"
-        [queryParams]="{ page: 1, limit: 10 }"
-        [routerLinkActive]="['active']"
-      >
-        Invoice-List
-      </a>
-    </mat-expansion-panel>
+
+    <a
+      mat-flat-button
+      [routerLink]="['/delete']"
+      [routerLinkActive]="['active']"
+      (click)="drawer.toggle()"
+    >
+      Delete Videos
+    </a>
+    <br />
+    <a
+      mat-flat-button
+      [routerLink]="['/ban']"
+      [queryParams]="{ page: 1, limit: 10 }"
+      [routerLinkActive]="['active']"
+      (click)="drawer.toggle()"
+    >
+      Ban Users
+    </a>
+
+    <br />
+    <a
+      mat-flat-button
+      [routerLink]="['/create-admin']"
+      [queryParams]="{ page: 1, limit: 10 }"
+      [routerLinkActive]="['active']"
+      (click)="drawer.toggle()"
+    >
+      Create Admin
+    </a>
     }
   </mat-drawer>
 

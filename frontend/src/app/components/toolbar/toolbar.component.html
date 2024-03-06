@@ -8,6 +8,7 @@
 
   <span class="example-spacer"></span>
 
+  @if((role$|async)==''){
   <button
     mat-icon-button
     [routerLink]="['/login']"
@@ -15,7 +16,7 @@
   >
     <mat-icon>login</mat-icon>
   </button>
-
+  } @if((role$|async)==''){
   <button
     mat-icon-button
     [routerLink]="['/register']"
@@ -23,8 +24,17 @@
   >
     <mat-icon>person_add</mat-icon>
   </button>
-
+  } @if((role$|async)!=''){
+  <button
+    mat-icon-button
+    [routerLink]="['/user']"
+    [routerLinkActive]="['active']"
+  >
+    <mat-icon>person</mat-icon>
+  </button>
+  } @if((role$|async)!=''){
   <button mat-icon-button (click)="logout()">
     <mat-icon>logout</mat-icon>
   </button>
+  }
 </mat-toolbar>

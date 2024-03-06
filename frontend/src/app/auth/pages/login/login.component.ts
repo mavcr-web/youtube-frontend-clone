@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { RoleService } from '../../../services/role.service';
 
 @Component({
   selector: 'app-login',
@@ -27,11 +28,12 @@ import { MatInputModule } from '@angular/material/input';
 })
 export class LoginComponent {
   loginForm!: FormGroup;
-  constructor(
-    private authService: AuthService,
-    private formBuilder: FormBuilder,
-    private _router: Router
-  ) {}
+
+  private authService: AuthService = inject(AuthService);
+  private roleService: RoleService = inject(RoleService);
+  private formBuilder: FormBuilder = inject(FormBuilder);
+  private _router: Router = inject(Router);
+
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
@@ -43,6 +45,7 @@ export class LoginComponent {
     this.authService.login(body).subscribe((data) => {
       sessionStorage.setItem('token', data.token);
       sessionStorage.setItem('role', data.role);
+      this.roleService.sendData(data.role);
       this._router.navigate(['/']);
     });
   }
