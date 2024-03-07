@@ -40,7 +40,7 @@ export class RegisterAdminComponent {
   }
   register() {
     const body = this.registerForm.value;
-    this.authService.register(body).subscribe((data) => {
+    this.authService.registerAdmin(body).subscribe((data) => {
       this._router.navigate(['/login']);
     });
   }
