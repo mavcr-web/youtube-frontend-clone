@@ -1,0 +1,13 @@
+<div class="video-thumbnail">
+  <img
+    class="thumbnail-image"
+    loading="lazy"
+    src="{{ url }}"
+    alt="no thumbnail"
+    [routerLink]="['/play', video.id]"
+  />
+  <div class="thumbnail-details">
+    <h2>{{ video.title }}</h2>
+    <p>{{ video.description }}</p>
+  </div>
+</div>

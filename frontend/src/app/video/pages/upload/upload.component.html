@@ -1,2 +1,16 @@
-<input type="file" accept=".mp4" multiple="false" (change)="loadVideo($event)">
-<button (click)="uploadVideo()">UPLOAD</button>
+<input
+  type="file"
+  accept=".mp4"
+  multiple="false"
+  (change)="loadVideo($event)"
+/>
+<button (click)="uploadVideo(visibility.value)">UPLOAD</button>
+<select #visibility>
+  <option value="public">public</option>
+  <option value="followers">followers</option>
+  <option [defaultSelected]="true" value="private">private</option>
+</select>
+
+@if (url) {
+<video controls style="width: 100%; height: auto" src="{{ url }}"></video>
+}

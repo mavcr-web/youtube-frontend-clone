@@ -1,0 +1,45 @@
+.video-thumbnail {
+  /* Estilos para el contenedor del video */
+  display: grid;
+  place-items: center;
+  width: 300px;
+  height: 200px;
+  background-color: #f2f2f2;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.thumbnail-image {
+  /* Estilos para la imagen del video */
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  position: relative;
+  cursor: pointer;
+}
+
+.thumbnail-details {
+  /* Estilos para los detalles del video */
+  margin-top: 16px;
+}
+
+.thumbnail-details h2 {
+  /* Estilos para el título del video */
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.thumbnail-details p {
+  /* Estilos para la descripción del video */
+  font-size: 14px;
+  color: #666666;
+}
+
+.thumbnail-link {
+  /* Estilos para los enlaces del video */
+  margin-top: 16px;
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}

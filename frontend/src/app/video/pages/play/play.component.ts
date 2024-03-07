@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, afterNextRender, inject } from '@angular/core';
 import { VideoService } from '../../services/video.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -19,7 +19,7 @@ export class PlayComponent {
 
   getVideoUrl() {
     this._activatedRoute.params.subscribe(({ id }) => {
-      this.videoService.getVideo(`${id}.mp4`).subscribe((data) => {
+      this.videoService.getVideo(id).subscribe((data) => {
         document.getElementById('videoplayer')!.setAttribute('src', data.url);
       });
     });

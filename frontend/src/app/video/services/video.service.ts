@@ -14,13 +14,29 @@ export class VideoService {
 
   constructor() {}
 
-  uploadVideo(video: File) {
+  uploadVideo(video: File, visibility: string) {
     const formData: FormData = new FormData();
     formData.append('video', video);
-    return this._httpClient.post(`${this.path}`, formData);
+    return this._httpClient.post(`${this.path}/${visibility}`, formData);
   }
 
-  getVideo(id: string) {
+  uploadThumbnail(thumbnail: File, id: string) {
+    const formData: FormData = new FormData();
+    formData.append('thumbnail', thumbnail);
+    return this._httpClient.post(`${this.path}/thumbnail/${id}`, formData);
+  }
+
+  getVideo(id: number) {
     return this._httpClient.get<{ url: string }>(`${this.path}/${id}`);
+  }
+
+  getThumbnail(id: number) {
+    return this._httpClient.get<{ url: string }>(
+      `${this.path}/thumbnail/${id}`
+    );
+  }
+
+  getVideos() {
+    return this._httpClient.get<[]>(`${this.path}`);
   }
 }

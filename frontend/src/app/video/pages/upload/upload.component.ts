@@ -11,6 +11,7 @@ import { VideoService } from '../../services/video.service';
 export class UploadComponent {
   videoService: VideoService = inject(VideoService);
   video!: File;
+  url!: string;
 
   getFiles(event: Event): File[] {
     const files = (event.target as HTMLInputElement).files;
@@ -21,13 +22,12 @@ export class UploadComponent {
     const file = this.getFiles(event)[0];
     if (file) {
       this.video = file;
-      console.log(this.video);
-      
+      this.url = URL.createObjectURL(this.video);
     }
   }
 
-  uploadVideo(): void {
-    this.videoService.uploadVideo(this.video).subscribe((data) => {
+  uploadVideo(visibility: string): void {
+    this.videoService.uploadVideo(this.video, visibility).subscribe((data) => {
       console.log(data);
     });
   }

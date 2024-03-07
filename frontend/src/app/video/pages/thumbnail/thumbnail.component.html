@@ -1,0 +1,11 @@
+<input
+  type="file"
+  accept="img/*"
+  multiple="false"
+  (change)="loadThumbnail($event)"
+/>
+<button (click)="uploadThumbnail()">UPLOAD</button>
+
+@if (url) {
+<img style="width: 100%; height: auto" src="{{ url }}" alt="no thumbnail" />
+}
