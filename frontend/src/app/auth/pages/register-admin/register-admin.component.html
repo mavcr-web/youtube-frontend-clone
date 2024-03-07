@@ -1,0 +1,42 @@
+<div class="grid-container">
+  <form [formGroup]="registerForm" class="form">
+    <mat-form-field class="example-full-width">
+      <mat-label>username</mat-label>
+      <input
+        type="text"
+        formControlName="username"
+        matInput
+        placeholder="username"
+      />
+      @if (registerForm.get('username')?.touched &&
+      registerForm.get('username')?.errors?.['required']) {
+      <mat-error> este campo es obligatorio </mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>password</mat-label>
+      <input
+        type="password"
+        formControlName="password"
+        matInput
+        placeholder="password"
+      />
+      @if (registerForm.get('password')?.touched &&
+      registerForm.get('password')?.errors?.['required']) {
+      <mat-error> este campo es obligatorio </mat-error>
+      }
+    </mat-form-field>
+
+    <button
+      mat-fab
+      extended
+      color="accent"
+      [disabled]="registerForm.invalid"
+      (click)="register()"
+    >
+      <mat-icon>add_circle_outline</mat-icon>
+      SAVE ADMIN
+    </button>
+  </form>
+</div>

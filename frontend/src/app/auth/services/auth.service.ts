@@ -21,6 +21,10 @@ export class AuthService {
     return this._httpClient.post(`${this.url}/auth/register`, body);
   }
 
+  registerAdmin(body: { username: string; password: string }) {
+    return this._httpClient.post(`${this.url}/auth/register-admin`, body);
+  }
+
   changePassword(password: string) {
     return this._httpClient.put<{ action: string }>(
       `${this.url}/change-password`,
