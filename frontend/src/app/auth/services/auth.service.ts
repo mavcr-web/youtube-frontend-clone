@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { Injectable, afterNextRender, inject } from '@angular/core';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
@@ -32,5 +32,20 @@ export class AuthService {
         password,
       }
     );
+  }
+
+  getCredentials() {
+    let token = 'test';
+    let role = 'test';
+    afterNextRender(() => {
+      token = sessionStorage.getItem('token') || '';
+      role = sessionStorage.getItem('role') || '';
+    });
+    return { token, role };
+  }
+
+  logout() {
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('role');
   }
 }

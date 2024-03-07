@@ -1,14 +1,10 @@
 import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
-import { afterNextRender } from '@angular/core';
-
+import { inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { catchError, throwError } from 'rxjs';
 
 export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
-  let token = '';
-
-  afterNextRender(() => {
-    token = sessionStorage.getItem('token') || '';
-  });
+  const token = sessionStorage.getItem('token') || '';
 
   const cloneReq = req.clone({
     setHeaders: {
@@ -16,20 +12,15 @@ export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
     },
   });
 
-  return next(cloneReq)
-  // .pipe(
-  //   catchError((err: HttpErrorResponse) => {
-  //     return handleErrorResponse(err);
-  //   })
-  // );
+  return next(cloneReq).pipe(catchError(handleErrorResponse));
 };
 
 function handleErrorResponse(error: HttpErrorResponse) {
   if (error.status === 401) {
-    afterNextRender(() => {
-      sessionStorage.removeItem('token');
-      sessionStorage.removeItem('role');
-    });
+    const _router: Router = inject(Router);
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('role');
+    _router.navigate(['/']);
 
     return throwError(() => {
       return new Error('Sin Autorizacion');
