@@ -1,5 +1,6 @@
 import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { afterNextRender } from '@angular/core';
+
 import { catchError, throwError } from 'rxjs';
 
 export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
@@ -9,19 +10,18 @@ export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
     token = sessionStorage.getItem('token') || '';
   });
 
-  // token = sessionStorage.getItem('token') || '';
+  const cloneReq = req.clone({
+    setHeaders: {
+      authorization: `Bearer ${token}`,
+    },
+  });
 
-  return next(
-    req.clone({
-      setHeaders: {
-        authorization: `Bearer ${token}`,
-      },
-    })
-  ).pipe(
-    catchError((err: HttpErrorResponse) => {
-      return handleErrorResponse(err);
-    })
-  );
+  return next(cloneReq)
+  // .pipe(
+  //   catchError((err: HttpErrorResponse) => {
+  //     return handleErrorResponse(err);
+  //   })
+  // );
 };
 
 function handleErrorResponse(error: HttpErrorResponse) {
@@ -30,8 +30,6 @@ function handleErrorResponse(error: HttpErrorResponse) {
       sessionStorage.removeItem('token');
       sessionStorage.removeItem('role');
     });
-    // sessionStorage.removeItem('token');
-    // sessionStorage.removeItem('role');
 
     return throwError(() => {
       return new Error('Sin Autorizacion');

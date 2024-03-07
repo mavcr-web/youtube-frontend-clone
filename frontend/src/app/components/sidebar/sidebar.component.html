@@ -74,6 +74,15 @@
       Upload
     </a>
 
+    <a
+      mat-flat-button
+      [routerLink]="['/videos']"
+      [routerLinkActive]="['active']"
+      (click)="drawer.toggle()"
+    >
+      Videos
+    </a>
+
     <br />
 
     <a

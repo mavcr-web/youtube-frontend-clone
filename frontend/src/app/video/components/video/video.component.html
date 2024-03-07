@@ -1,4 +1,5 @@
 <div class="video-thumbnail">
+  @if(view=='home'){
   <img
     class="thumbnail-image"
     loading="lazy"
@@ -10,4 +11,19 @@
     <h2>{{ video.title }}</h2>
     <p>{{ video.description }}</p>
   </div>
+  } @if(view=='panel'){
+  <img
+    class="thumbnail-image"
+    loading="lazy"
+    src="{{ url }}"
+    alt="no thumbnail"
+    [routerLink]="['/play', video.id]"
+  />
+  <div class="thumbnail-details">
+    <h2>{{ video.title }}</h2>
+    <p>{{ video.description }}</p>
+    <button [routerLink]="['/thumbnail', video.id]">Thumbnail</button>
+    <button [routerLink]="['/delete', video.id]">Delete</button>
+  </div>
+  }
 </div>

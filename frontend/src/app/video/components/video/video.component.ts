@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
 })
 export class VideoComponent {
   @Input() video: any;
+  @Input() view!: string;
   url!: string;
 
   videoService: VideoService = inject(VideoService);
