@@ -1,16 +1,99 @@
 <input
+  #input
+  id="input"
   type="file"
   accept=".mp4"
   multiple="false"
+  style="display: none"
   (change)="loadVideo($event)"
 />
-<button (click)="uploadVideo(visibility.value)">UPLOAD</button>
-<select #visibility>
-  <option value="public">public</option>
-  <option value="followers">followers</option>
-  <option [defaultSelected]="true" value="private">private</option>
-</select>
+<canvas id="canvas" style="display: none"></canvas>
 
-@if (url) {
-<video controls style="width: 100%; height: auto" src="{{ url }}"></video>
-}
+<div class="grid-container">
+  <form [formGroup]="uploadForm" class="form">
+    @if (url) {
+    <video
+      id="video"
+      controls
+      style="width: 100%; height: auto"
+      src="{{ url }}"
+    ></video>
+    } @if (urlThumbnail) {
+    <img src="{{ urlThumbnail }}" alt="" />
+    }
+
+    <mat-form-field>
+      <mat-label>name</mat-label>
+      <input type="text" formControlName="name" matInput placeholder="name" />
+      @if (uploadForm.get('name')?.touched &&
+      uploadForm.get('name')?.errors?.['required']) {
+      <mat-error> name is required </mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>description</mat-label>
+      <input
+        type="text"
+        formControlName="description"
+        matInput
+        placeholder="description"
+      />
+      @if (uploadForm.get('description')?.touched &&
+      uploadForm.get('description')?.errors?.['required']) {
+      <mat-error> description is required </mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Visibility</mat-label>
+      <mat-select id="select" #visibility [value]="'public'">
+        <mat-option [value]="'public'">public</mat-option>
+        <mat-option [value]="'followers'">followers</mat-option>
+        <mat-option [value]="'private'">private</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div>
+      <button
+        mat-fab
+        extended
+        color="warn"
+        [disabled]="input.value != ''"
+        (click)="openInput()"
+      >
+        <mat-icon>add_circle_outline</mat-icon>
+        Load
+      </button>
+
+      <button
+        mat-fab
+        extended
+        color="warn"
+        [disabled]="video == undefined"
+        (click)="generateThumbnail(341.312, 191.984)"
+      >
+        <mat-icon>add_circle_outline</mat-icon>
+        Thumbnail
+      </button>
+
+      <button
+        mat-fab
+        extended
+        color="primary"
+        [disabled]="
+          uploadForm.invalid || video == undefined || thumbnail == undefined
+        "
+        (click)="uploadVideo(visibility.value)"
+      >
+        <mat-icon>add_circle_outline</mat-icon>
+        Upload
+      </button>
+
+      <button mat-fab extended color="accent" (click)="reset()">
+        <mat-icon>add_circle_outline</mat-icon>
+        Reset
+      </button>
+    </div>
+  </form>
+</div>

@@ -14,9 +14,10 @@ export class VideoService {
 
   constructor() {}
 
-  uploadVideo(video: File, visibility: string) {
+  uploadVideo(video: File, thumbnail: File, visibility: string) {
     const formData: FormData = new FormData();
     formData.append('video', video);
+    formData.append('video', thumbnail);
     return this._httpClient.post(`${this.path}/${visibility}`, formData);
   }
 

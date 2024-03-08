@@ -1,5 +1,5 @@
 <div class="video-thumbnail">
-  @if(view=='home'){ @if (url) {
+  @if(view=='home'){ @if (url!='' || url!=null) {
 
   <img
     class="thumbnail-image"
@@ -9,12 +9,12 @@
     [routerLink]="['/play', video.id]"
   />
 
-  }@if (!url) {
+  }@if (url=='' || url==null) {
 
   <img
     class="thumbnail-image"
     loading="lazy"
-    src=""
+    src="{{ noImageUrl }}"
     alt="no thumbnail"
     [routerLink]="['/play', video.id]"
   />
@@ -24,7 +24,7 @@
     <h2>{{ video.title }}</h2>
     <p>{{ video.description }}</p>
   </div>
-  } @if(view=='panel'){ @if (url) {
+  } @if(view=='panel'){ @if (url!='' || url!=null) {
 
   <img
     class="thumbnail-image"
@@ -34,12 +34,12 @@
     [routerLink]="['/play', video.id]"
   />
 
-  }@if (!url) {
+  }@if (url=='' || url==null) {
 
   <img
     class="thumbnail-image"
     loading="lazy"
-    src=""
+    src="{{ noImageUrl }}"
     alt="no thumbnail"
     [routerLink]="['/play', video.id]"
   />

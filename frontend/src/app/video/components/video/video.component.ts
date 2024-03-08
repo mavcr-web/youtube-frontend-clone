@@ -15,6 +15,7 @@ export class VideoComponent {
   @Input() view!: string;
   @Output() videoEvent = new EventEmitter<string>();
   url!: string;
+  noImageUrl = '../../../../assets/images/no-image.svg';
 
   private _snackBar: MatSnackBar = inject(MatSnackBar);
 
