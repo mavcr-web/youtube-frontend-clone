@@ -11,8 +11,8 @@
 
 .thumbnail-image {
   /* Estilos para la imagen del video */
-  width: 100%;
-  height: auto;
+  width: auto;
+  height: 200px;
   border-radius: 8px;
   position: relative;
   cursor: pointer;

@@ -39,8 +39,8 @@ export class VideoService {
     );
   }
 
-  getVideos() {
-    return this._httpClient.get<[]>(`${this.path}`);
+  getVideos(title: string) {
+    return this._httpClient.get<[]>(`${this.path}?title=${title}`);
   }
 
   getMyVideos() {

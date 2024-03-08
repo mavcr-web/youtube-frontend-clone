@@ -1,8 +1,18 @@
 <div class="grid-container">
-  <div class="grid-auto-resize">
-    @for (item of list; track $index) {
+  <mat-form-field class="example-form-field">
+    <mat-label>Search</mat-label>
+    <input matInput type="text" [(ngModel)]="title" (keydown.enter)="goTo()" />
 
+    <button matSuffix mat-icon-button aria-label="Clear" (click)="goTo()">
+      <mat-icon>search</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <div class="grid-auto-resize">
+    @if ( !isLoading ) { @for (item of list; track $index) {
     <app-video [video]="item" [view]="'home'" />
-    }
+    }@empty {
+    <h2 style="justify-self: center">No Videos</h2>
+    } }
   </div>
 </div>
