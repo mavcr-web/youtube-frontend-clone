@@ -1,0 +1,9 @@
+<div class="grid-container">
+  <div class="grid-auto-resize">
+    @for (item of list; track $index) {
+    <app-video [id]="item.idVideo" [view]="'home'" />
+    }@empty {
+    <h2 style="justify-self: center">No Videos</h2>
+    }
+  </div>
+</div>

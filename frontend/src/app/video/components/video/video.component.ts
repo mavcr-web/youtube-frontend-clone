@@ -11,6 +11,7 @@ import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
   styleUrl: './video.component.css',
 })
 export class VideoComponent {
+  @Input() id: number = 0;
   @Input() video: any;
   @Input() view!: string;
   @Output() videoEvent = new EventEmitter<string>();
@@ -22,6 +23,17 @@ export class VideoComponent {
   videoService: VideoService = inject(VideoService);
 
   ngOnInit() {
+    if (this.id > 0) {
+      this.videoService.getOneVideo(this.id).subscribe((data) => {
+        console.log(data);
+        
+        this.video = data;
+        this.videoService.getThumbnail(this.id).subscribe((data) => {
+          this.url = data.url;
+        });
+      });
+    }
+
     this.videoService.getThumbnail(this.video.id).subscribe((data) => {
       this.url = data.url;
     });

@@ -33,6 +33,10 @@ export class VideoService {
     );
   }
 
+  getOneVideo(id: number) {
+    return this._httpClient.get<{}>(`${this.path}/entity/${id}`);
+  }
+
   getThumbnail(id: number) {
     return this._httpClient.get<{ url: string }>(
       `${this.path}/thumbnail/${id}`
@@ -49,5 +53,16 @@ export class VideoService {
 
   delete(id: number) {
     return this._httpClient.delete(`${this.path}/${id}`);
+  }
+
+  addToHistory(id: number) {
+    return this._httpClient.post(`${this.url}/history`, {
+      idUser: 0,
+      idVideo: id,
+    });
+  }
+
+  getHistory() {
+    return this._httpClient.get<[]>(`${this.url}/history`);
   }
 }

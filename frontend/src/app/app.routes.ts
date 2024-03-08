@@ -12,5 +12,6 @@ export const routes: Routes = [
     {path: 'play/:id', loadComponent: () => import('./video/pages/play/play.component').then(c => c.PlayComponent)},
     {path: 'thumbnail/:id', loadComponent: () => import('./video/pages/thumbnail/thumbnail.component').then(c => c.ThumbnailComponent)},
     {path: 'videos', loadComponent: () => import('./video/pages/videos/videos.component').then(c => c.VideosComponent)},
+    {path: 'history', loadComponent: () => import('./video/pages/history/history.component').then(c => c.HistoryComponent)},
     {path: '', loadComponent: () => import('./video/pages/list/list.component').then(c => c.ListComponent)},
 ];

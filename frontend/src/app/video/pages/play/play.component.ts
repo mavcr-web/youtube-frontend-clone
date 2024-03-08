@@ -13,6 +13,7 @@ export class PlayComponent {
   _activatedRoute: ActivatedRoute = inject(ActivatedRoute);
   videoService: VideoService = inject(VideoService);
   idUser: string = '';
+  token = sessionStorage.getItem('token');
 
   ngOnInit() {
     this.getVideoUrl();
@@ -25,6 +26,9 @@ export class PlayComponent {
         this.idUser = data.idUser;
         this.checkAspectRatio();
       });
+      if (this.token) {
+        this.videoService.addToHistory(parseInt(id)).subscribe(() => {});
+      }
     });
   }
 
@@ -36,9 +40,9 @@ export class PlayComponent {
   checkAspectRatio() {
     const video = document.getElementById('videoplayer') as HTMLVideoElement;
     if (video.videoWidth / video.videoHeight > 1.5) {
-      video.style.width = '100%';
+      video.style.width = '80%';
     } else {
-      video.style.height = '100%';
+      video.style.height = '80%';
     }
   }
 }
