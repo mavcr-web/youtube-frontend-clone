@@ -61,6 +61,8 @@ export class UploadComponent {
       this.video = file;
       this.url = URL.createObjectURL(this.video);
     }
+    this.uploadForm.get('name')?.setValue(file.name.split('.')[0]);
+    this.uploadForm.get('description')?.setValue(file.name.split('.')[0]);
   }
 
   uploadVideo(visibility: string): void {
@@ -85,6 +87,18 @@ export class UploadComponent {
 
     canvas.width = width;
     canvas.height = height;
+
+    const aspectRatio = this.checkAspectRatio();
+
+    if (aspectRatio === 'width') {
+      const scale = width / video.videoWidth;
+      canvas.height = video.videoHeight * scale;
+    }
+
+    if (aspectRatio === 'height') {
+      const scale = height / video.videoHeight;
+      canvas.width = video.videoWidth * scale;
+    }
 
     // Dibuja el fotograma actual del video en el canvas
     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
@@ -139,5 +153,14 @@ export class UploadComponent {
   openInput(): void {
     const input = document.getElementById('input') as HTMLInputElement;
     input.click();
+  }
+
+  checkAspectRatio(): string {
+    const video = document.getElementById('video') as HTMLVideoElement;
+    if (video.videoWidth / video.videoHeight > 1.5) {
+      return 'width';
+    } else {
+      return 'height';
+    }
   }
 }

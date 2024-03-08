@@ -28,7 +28,9 @@ export class VideoService {
   }
 
   getVideo(id: number) {
-    return this._httpClient.get<{ url: string }>(`${this.path}/${id}`);
+    return this._httpClient.get<{ url: string; idUser: string }>(
+      `${this.path}/${id}`
+    );
   }
 
   getThumbnail(id: number) {
