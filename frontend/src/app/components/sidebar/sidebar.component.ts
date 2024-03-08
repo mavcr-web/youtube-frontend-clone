@@ -26,10 +26,9 @@ import { RoleService } from '../../services/role.service';
 })
 export class SidebarComponent {
   constructor(private roleService: RoleService) {}
-
   role$ = this.roleService.role$;
 
-  test(){
+  test() {
     this.roleService.sendData('admin');
   }
 }

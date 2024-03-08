@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, afterNextRender, inject } from '@angular/core';
 import { environment } from '../../../environments/environment';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -9,6 +10,7 @@ export class AuthService {
   url = environment.url;
 
   private _httpClient: HttpClient = inject(HttpClient);
+  private _router: Router = inject(Router);
 
   login(body: { username: string; password: string }) {
     return this._httpClient.post<{ token: string; role: string }>(
@@ -47,5 +49,6 @@ export class AuthService {
   logout() {
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('role');
+    this._router.navigate(['/']);
   }
 }

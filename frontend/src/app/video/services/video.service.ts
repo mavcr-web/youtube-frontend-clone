@@ -43,4 +43,8 @@ export class VideoService {
   getMyVideos() {
     return this._httpClient.get<[]>(`${this.path}/my-videos`);
   }
+
+  delete(id: number) {
+    return this._httpClient.delete(`${this.path}/${id}`);
+  }
 }

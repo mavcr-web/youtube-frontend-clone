@@ -19,4 +19,8 @@ export class VideosComponent {
       this.list = data;
     });
   }
+
+  removeFromlist(id: string) {
+    this.list = this.list.filter((v) => v.id !== id);
+  }
 }

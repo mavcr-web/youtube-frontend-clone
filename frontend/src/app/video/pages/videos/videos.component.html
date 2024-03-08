@@ -2,6 +2,11 @@
   <div class="grid-auto-resize">
     @for (item of list; track $index) {
 
-    <app-video [video]="item" [view]="'panel'" /> }
+    <app-video
+      [video]="item"
+      [view]="'panel'"
+      (videoEvent)="removeFromlist($event)"
+    />
+    }
   </div>
 </div>
