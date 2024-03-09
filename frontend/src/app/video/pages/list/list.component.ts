@@ -34,6 +34,7 @@ export class ListComponent {
   ngOnInit() {
     this._activatedRoute.queryParams.subscribe(({ title }) => {
       this.isLoading = true;
+      title == undefined ? (title = '') : (title = title);
       this.videoService.getVideos(title).subscribe((data) => {
         this.list = [];
         this.list = data;

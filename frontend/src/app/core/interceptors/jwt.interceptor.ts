@@ -17,10 +17,8 @@ export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
 
 function handleErrorResponse(error: HttpErrorResponse) {
   if (error.status === 401) {
-    const _router: Router = inject(Router);
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('role');
-    _router.navigate(['/']);
 
     return throwError(() => {
       return new Error('Sin Autorizacion');
