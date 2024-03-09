@@ -34,7 +34,7 @@ export class ToolbarComponent {
   private userService: UserService = inject(UserService);
   role$ = this.roleService.role$;
 
-  title: string = '';
+  
 
   ngOnInit() {
     this.userService.isNew();
@@ -56,7 +56,5 @@ export class ToolbarComponent {
     }
   }
 
-  goTo() {
-    this._router.navigate(['/'], { queryParams: { title: this.title } });
-  }
+  
 }

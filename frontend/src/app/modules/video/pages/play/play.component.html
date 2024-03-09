@@ -1,6 +1,10 @@
-<video id="videoplayer" controls autoplay></video>
+<div class="grid-container">
+  <div class="form">
+    <video id="videoplayer" controls autoplay></video>
 
-@if (id) {
-<app-like [id]="id" [idUser]="+idUser" />
-<app-comments [id]="id" />
-}
+    @if (id) {
+    <app-like [id]="id" [idUser]="+idUser" />
+    <app-comments [id]="id" />
+    }
+  </div>
+</div>

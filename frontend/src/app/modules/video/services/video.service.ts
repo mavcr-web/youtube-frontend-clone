@@ -102,4 +102,21 @@ export class VideoService {
   removeLike(id: number) {
     return this._httpClient.delete(`${this.url}/like-video/${id}`);
   }
+
+  // Comments
+  addComment(id: number, comment: string) {
+    return this._httpClient.post(`${this.url}/comment`, {
+      idUser: 0,
+      idVideo: id,
+      comment,
+    });
+  }
+
+  getComments(id: number) {
+    return this._httpClient.get<[]>(`${this.url}/comment?id=${id}`);
+  }
+
+  removeComment(id: number) {
+    return this._httpClient.delete(`${this.url}/comment/${id}`);
+  }
 }
