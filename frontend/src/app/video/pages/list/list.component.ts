@@ -24,7 +24,6 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class ListComponent {
   videoService: VideoService = inject(VideoService);
-  title: string = '';
   isLoading: boolean = false;
 
   list: [] = [];
@@ -34,19 +33,12 @@ export class ListComponent {
 
   ngOnInit() {
     this._activatedRoute.queryParams.subscribe(({ title }) => {
-      this.title ? (this.title = title) : null;
-      console.log(this.title);
-
       this.isLoading = true;
-      this.videoService.getVideos(this.title).subscribe((data) => {
+      this.videoService.getVideos(title).subscribe((data) => {
         this.list = [];
         this.list = data;
         this.isLoading = false;
       });
     });
-  }
-
-  goTo() {
-    this._router.navigate(['/'], { queryParams: { title: this.title } });
   }
 }

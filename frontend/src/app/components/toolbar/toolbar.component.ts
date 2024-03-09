@@ -6,6 +6,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDrawer } from '@angular/material/sidenav';
 import { RoleService } from '../../services/role.service';
 import { AsyncPipe } from '@angular/common';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-toolbar',
@@ -16,6 +19,9 @@ import { AsyncPipe } from '@angular/common';
     MatButtonModule,
     MatIconModule,
     AsyncPipe,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   templateUrl: './toolbar.component.html',
   styleUrl: './toolbar.component.css',
@@ -26,14 +32,14 @@ export class ToolbarComponent {
   private roleService: RoleService = inject(RoleService);
   role$ = this.roleService.role$;
 
-  constructor() {
-    afterNextRender(() => {
-      const role = sessionStorage.getItem('role');
-      const token = sessionStorage.getItem('token');
-      if (role && token) {
-        this.roleService.sendData(role);
-      }
-    });
+  title: string = '';
+
+  ngOnInit() {
+    const role = sessionStorage.getItem('role');
+    const token = sessionStorage.getItem('token');
+    if (role && token) {
+      this.roleService.sendData(role);
+    }
   }
 
   logout() {
@@ -45,5 +51,9 @@ export class ToolbarComponent {
       this.roleService.sendData('');
       this._router.navigate(['/']);
     }
+  }
+
+  goTo() {
+    this._router.navigate(['/'], { queryParams: { title: this.title } });
   }
 }

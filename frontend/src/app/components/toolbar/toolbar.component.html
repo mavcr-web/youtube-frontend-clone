@@ -6,7 +6,21 @@
     <mat-icon>home</mat-icon>
   </button>
 
-  <span class="example-spacer"></span>
+  <span class="example-spacer">
+    <mat-form-field class="example-form-field">
+      <mat-label>Search</mat-label>
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="title"
+        (keydown.enter)="goTo()"
+      />
+
+      <button matSuffix mat-icon-button aria-label="Clear" (click)="goTo()">
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-form-field>
+  </span>
 
   @if((role$|async)==''){
   <button
