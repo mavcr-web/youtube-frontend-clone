@@ -119,4 +119,19 @@ export class VideoService {
   removeComment(id: number) {
     return this._httpClient.delete(`${this.url}/comment/${id}`);
   }
+
+  // Subscriptions
+  subscribe(id: number) {
+    return this._httpClient.post(`${this.url}/follow`, {
+      idFollowed: id,
+    });
+  }
+
+  getStatusSubscription(id: number) {
+    return this._httpClient.get<boolean>(`${this.url}/follow/${id}`);
+  }
+
+  unsubscribe(id: number) {
+    return this._httpClient.delete(`${this.url}/follow/${id}`);
+  }
 }

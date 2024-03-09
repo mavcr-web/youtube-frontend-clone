@@ -2,6 +2,17 @@
   <button mat-raised-button color="primary" [routerLink]="['/videos/', idUser]">
     {{ channel | uppercase }}
   </button>
+  @if (isSubscribed) {
+
+  <button
+    mat-mini-fab
+    color="warn"
+    [disabled]="!isSubscribed"
+    (click)="unsubscribe()"
+  >
+    <mat-icon> unsubscribe </mat-icon>
+  </button>
+  } @if (!isSubscribed) {
   <button
     mat-mini-fab
     color="primary"
@@ -10,6 +21,7 @@
   >
     <mat-icon> subscriptions </mat-icon>
   </button>
+  }
 
   <button mat-mini-fab color="primary" (click)="shareUrl()">
     <mat-icon> share </mat-icon>

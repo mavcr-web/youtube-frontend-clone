@@ -41,6 +41,7 @@ export class LikeComponent {
       this.isLiked = data;
     });
     this.getChannel();
+    this.subscribeStatus();
   }
 
   removeLike() {
@@ -63,7 +64,23 @@ export class LikeComponent {
     this.showSnackBar('URL copied to clipboard');
   }
 
-  subscribe() {}
+  subscribe() {
+    this.videoService.subscribe(this.idUser).subscribe(() => {
+      this.isSubscribed = true;
+    });
+  }
+
+  unsubscribe() {
+    this.videoService.unsubscribe(this.idUser).subscribe(() => {
+      this.isSubscribed = false;
+    });
+  }
+
+  subscribeStatus() {
+    this.videoService.getStatusSubscription(this.idUser).subscribe((data) => {
+      this.isSubscribed = data;
+    });
+  }
 
   showSnackBar(message: string) {
     this._snackBar.open(message, 'Close', {
