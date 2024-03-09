@@ -14,11 +14,22 @@ export class VideoService {
 
   constructor() {}
 
-  uploadVideo(video: File, thumbnail: File, visibility: string) {
+  uploadVideo(
+    video: File,
+    thumbnail: File,
+    visibility: string,
+    name: string,
+    description: string
+  ) {
+    console.log(video, thumbnail, visibility, name, description);
+    
     const formData: FormData = new FormData();
     formData.append('video', video);
     formData.append('video', thumbnail);
-    return this._httpClient.post(`${this.path}/${visibility}`, formData);
+    return this._httpClient.post(
+      `${this.path}/${visibility}?name=${name}&description=${description}`,
+      formData
+    );
   }
 
   uploadThumbnail(thumbnail: File, id: string) {

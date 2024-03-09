@@ -12,6 +12,6 @@ export class UserService {
   _httpClient: HttpClient = inject(HttpClient);
 
   getChannel(id: number) {
-    return this._httpClient.get<string>(`${this.path}/channel/${id}`);
+    return this._httpClient.get(`${this.path}/${id}`);
   }
 }

@@ -70,7 +70,13 @@ export class UploadComponent {
       return;
     }
     this.videoService
-      .uploadVideo(this.video, this.thumbnail, visibility)
+      .uploadVideo(
+        this.video,
+        this.thumbnail,
+        visibility,
+        this.uploadForm.value.name,
+        this.uploadForm.value.description
+      )
       .subscribe((data) => {
         this._snackBar.open('Video uploaded', 'Close', {
           duration: 3000,

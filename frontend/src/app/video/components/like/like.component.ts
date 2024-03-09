@@ -33,6 +33,7 @@ export class LikeComponent {
     this.videoService.getLike(this.id).subscribe((data) => {
       this.isLiked = data;
     });
+    this.getChannel();
   }
 
   removeLike() {
@@ -64,8 +65,8 @@ export class LikeComponent {
   }
 
   getChannel() {
-    this.userService.getChannel(this.idUser).subscribe((data) => {
-      this.channel = data;
+    this.userService.getChannel(this.idUser).subscribe((data: any) => {
+      this.channel = data.username;
     });
   }
 }
