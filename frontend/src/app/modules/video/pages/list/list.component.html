@@ -10,7 +10,10 @@
 
   <div class="grid-auto-resize">
     @if ( !isLoading ) { @for (item of list; track $index) {
-    <app-video [video]="item" [view]="'home'" />
+    <app-video
+      [video]="item"
+      [view]="(role$ | async) == 'admin' ? 'panel' : 'home'"
+    />
     }@empty {
     <h2 style="justify-self: center">No Videos</h2>
     } }

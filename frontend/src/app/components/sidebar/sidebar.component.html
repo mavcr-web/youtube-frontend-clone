@@ -36,7 +36,7 @@
     >
       Login
     </a>
-    <button (click)="test()">TEST LOGIN</button>
+
     }
 
     <br />
@@ -96,24 +96,6 @@
 
     <br />
     } @if ((role$|async)=='admin') {
-
-    <a
-      mat-flat-button
-      [routerLink]="['/delete']"
-      [routerLinkActive]="['active']"
-      (click)="drawer.toggle()"
-    >
-      Delete Videos
-    </a>
-    <br />
-    <a
-      mat-flat-button
-      [routerLink]="['/ban']"
-      [routerLinkActive]="['active']"
-      (click)="drawer.toggle()"
-    >
-      Ban Users
-    </a>
 
     <br />
     <a

@@ -9,6 +9,7 @@ import { AsyncPipe } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
+import { UserService } from '../../modules/user/user.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -30,11 +31,13 @@ export class ToolbarComponent {
   @Input() matDrawerShow!: MatDrawer;
   _router: Router = inject(Router);
   private roleService: RoleService = inject(RoleService);
+  private userService: UserService = inject(UserService);
   role$ = this.roleService.role$;
 
   title: string = '';
 
   ngOnInit() {
+    this.userService.isNew();
     const role = sessionStorage.getItem('role');
     const token = sessionStorage.getItem('token');
     if (role && token) {

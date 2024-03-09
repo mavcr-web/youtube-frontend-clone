@@ -5,11 +5,18 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { UserService } from '../../../user/user.service';
 import { UpperCasePipe } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-like',
   standalone: true,
-  imports: [MatButtonModule, MatIconModule, MatSnackBarModule, UpperCasePipe],
+  imports: [
+    MatButtonModule,
+    MatIconModule,
+    MatSnackBarModule,
+    UpperCasePipe,
+    RouterModule,
+  ],
   templateUrl: './like.component.html',
   styleUrl: './like.component.css',
 })

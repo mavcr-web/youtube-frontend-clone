@@ -4,7 +4,7 @@
 
     <app-video
       [video]="item"
-      [view]="'panel'"
+      [view]="(role$ | async) == 'admin' ? 'panel' : 'home'"
       (videoEvent)="removeFromlist($event)"
     />
     }

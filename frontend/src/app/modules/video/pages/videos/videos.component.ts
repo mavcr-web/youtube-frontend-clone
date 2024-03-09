@@ -1,11 +1,14 @@
 import { Component, HostListener, inject } from '@angular/core';
 import { VideoService } from '../../services/video.service';
 import { VideoComponent } from '../../components/video/video.component';
+import { RoleService } from '../../../../services/role.service';
+import { AsyncPipe } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-videos',
   standalone: true,
-  imports: [VideoComponent],
+  imports: [VideoComponent, AsyncPipe],
   templateUrl: './videos.component.html',
   styleUrl: './videos.component.css',
 })
@@ -23,12 +26,26 @@ export class VideosComponent {
     }
   }
   videoService: VideoService = inject(VideoService);
+  roleService: RoleService = inject(RoleService);
+  _activatedRoute: ActivatedRoute = inject(ActivatedRoute);
+
+  role$ = this.roleService.role$;
 
   list: any[] = [];
 
   ngOnInit() {
-    this.videoService.getMyVideos().subscribe((data) => {
-      this.list = data;
+    this._activatedRoute.params.subscribe(({ id }) => {
+      if (id == undefined) {
+        this.videoService.getMyVideos().subscribe((data) => {
+          this.list = data;
+        });
+      }
+
+      if (id) {
+        this.videoService.getChannelVideos(id).subscribe((data) => {
+          this.list = data;
+        });
+      }
     });
   }
 

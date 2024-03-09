@@ -22,7 +22,7 @@ export class VideoService {
     description: string
   ) {
     console.log(video, thumbnail, visibility, name, description);
-    
+
     const formData: FormData = new FormData();
     formData.append('video', video);
     formData.append('video', thumbnail);
@@ -60,6 +60,10 @@ export class VideoService {
 
   getMyVideos() {
     return this._httpClient.get<[]>(`${this.path}/my-videos`);
+  }
+
+  getChannelVideos(id: number) {
+    return this._httpClient.get<[]>(`${this.path}/channel-videos/${id}`);
   }
 
   delete(id: number) {
