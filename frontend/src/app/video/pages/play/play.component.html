@@ -1,15 +1,6 @@
 <video id="videoplayer" controls autoplay></video>
 
-<span style="cursor: pointer">
-  <h2>CHANNEL</h2>
-  {{ idUser }}
-</span>
-
-<button (click)="getVideoUrl()">PLAY</button>
-
-<button (click)="shareUrl()">SHARE</button>
-
 @if (id) {
-<app-like [id]="id" />
+<app-like [id]="id" [idUser]="+idUser" />
 <app-comments [id]="id" />
 }

@@ -1,7 +1,31 @@
-<button mat-mini-fab [disabled]="isLiked" (click)="addLike()">
-  <mat-icon> thumb_up </mat-icon>
-  {{ totalLikes }}
-</button>
-<button mat-mini-fab [disabled]="isDisliked" (click)="removeLike()">
-  <mat-icon> thumb_down </mat-icon>
-</button>
+<div class="flex-container">
+  <button mat-raised-button color="primary">
+    {{ channel | uppercase }}
+    <mat-icon> add </mat-icon>
+  </button>
+  <button
+    mat-mini-fab
+    color="primary"
+    [disabled]="isSubscribed"
+    (click)="subscribe()"
+  >
+    <mat-icon> subscriptions </mat-icon>
+  </button>
+
+  <button mat-mini-fab color="primary" (click)="shareUrl()">
+    <mat-icon> share </mat-icon>
+  </button>
+
+  <button mat-mini-fab color="primary" [disabled]="isLiked" (click)="addLike()">
+    <mat-icon> thumb_up </mat-icon>
+    {{ totalLikes }}
+  </button>
+  <button
+    mat-mini-fab
+    color="warn"
+    [disabled]="isDisliked"
+    (click)="removeLike()"
+  >
+    <mat-icon> thumb_down </mat-icon>
+  </button>
+</div>
