@@ -1,0 +1,7 @@
+<button mat-mini-fab [disabled]="isLiked" (click)="addLike()">
+  <mat-icon> thumb_up </mat-icon>
+  {{ totalLikes }}
+</button>
+<button mat-mini-fab [disabled]="isDisliked" (click)="removeLike()">
+  <mat-icon> thumb_down </mat-icon>
+</button>

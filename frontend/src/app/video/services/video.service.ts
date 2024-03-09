@@ -55,6 +55,8 @@ export class VideoService {
     return this._httpClient.delete(`${this.path}/${id}`);
   }
 
+  // History
+
   addToHistory(id: number) {
     return this._httpClient.post(`${this.url}/history`, {
       idUser: 0,
@@ -64,5 +66,25 @@ export class VideoService {
 
   getHistory() {
     return this._httpClient.get<[]>(`${this.url}/history`);
+  }
+
+  // Likes
+  addLike(id: number) {
+    return this._httpClient.post(`${this.url}/like-video`, {
+      idUser: 0,
+      idVideo: id,
+    });
+  }
+
+  getLikesCount(id: number) {
+    return this._httpClient.get<number>(`${this.url}/like-video?id=${id}`);
+  }
+
+  getLike(id: number) {
+    return this._httpClient.get<boolean>(`${this.url}/like-video/${id}`);
+  }
+
+  removeLike(id: number) {
+    return this._httpClient.delete(`${this.url}/like-video/${id}`);
   }
 }

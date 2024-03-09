@@ -1,11 +1,13 @@
 import { Component, afterNextRender, inject } from '@angular/core';
 import { VideoService } from '../../services/video.service';
 import { ActivatedRoute } from '@angular/router';
+import { CommentsComponent } from '../../components/comments/comments.component';
+import { LikeComponent } from '../../components/like/like.component';
 
 @Component({
   selector: 'app-play',
   standalone: true,
-  imports: [],
+  imports: [CommentsComponent, LikeComponent],
   templateUrl: './play.component.html',
   styleUrl: './play.component.css',
 })
@@ -14,6 +16,7 @@ export class PlayComponent {
   videoService: VideoService = inject(VideoService);
   idUser: string = '';
   token = sessionStorage.getItem('token');
+  id: number = 0;
 
   ngOnInit() {
     this.getVideoUrl();
@@ -22,6 +25,7 @@ export class PlayComponent {
   getVideoUrl() {
     this._activatedRoute.params.subscribe(({ id }) => {
       this.videoService.getVideo(id).subscribe((data) => {
+        this.id = parseInt(id);
         document.getElementById('videoplayer')!.setAttribute('src', data.url);
         this.idUser = data.idUser;
         this.checkAspectRatio();

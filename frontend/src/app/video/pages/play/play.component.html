@@ -8,3 +8,8 @@
 <button (click)="getVideoUrl()">PLAY</button>
 
 <button (click)="shareUrl()">SHARE</button>
+
+@if (id) {
+<app-like [id]="id" />
+<app-comments [id]="id" />
+}
