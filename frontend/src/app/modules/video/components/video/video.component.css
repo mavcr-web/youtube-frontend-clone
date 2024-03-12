@@ -43,3 +43,41 @@
   color: #007bff;
   font-weight: bold;
 }
+
+
+/*  */
+
+.grid-container {
+  /* Estilos para el contenedor de la grilla */
+  display: grid;
+  grid-template-rows: 4fr;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.video-image {
+  /* Estilos para la imagen del video */
+  display: grid;
+  grid-row: 2 span;
+  /* width: 100%;
+  height: 200px;
+  border-radius: 8px;
+  position: relative;
+  cursor: pointer; */
+}
+
+.video-title {
+  /* Estilos para el título del video */
+  display: grid;
+  grid-row: 1 span;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.video-description {
+  /* Estilos para los detalles del video */
+  display: grid;
+  grid-row: 1 span;
+  margin-top: 16px;
+}

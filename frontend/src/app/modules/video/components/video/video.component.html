@@ -1,4 +1,4 @@
-@if (video.id) {
+<!-- @if (video.id) {
 <div class="video-thumbnail">
   @if(view=='home'){ @if (url!='' || url!=null) {
 
@@ -53,4 +53,10 @@
   </div>
   }
 </div>
-}
+} -->
+
+<div class="grid-container">
+  <img class="video-image" src="{{ url }}" alt="">
+  <h2 class="video-title">{{ video.title }}</h2>
+  <p class="video-description">{{ video.description }}</p>
+</div>
