@@ -16,3 +16,9 @@
 .example-form-field {
   width: 200px;
 }
+
+
+.mat-toolbar {
+  background-color: #203500; /* Cambia el color de fondo a naranja */
+  color: white; /* Cambia el color del texto a blanco */
+}

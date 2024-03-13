@@ -2,11 +2,20 @@ import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { VideoService } from '../../services/video.service';
 import { RouterModule } from '@angular/router';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { UpperCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-video',
   standalone: true,
-  imports: [RouterModule, MatSnackBarModule],
+  imports: [
+    RouterModule,
+    MatSnackBarModule,
+    UpperCasePipe,
+    MatButtonModule,
+    MatIconModule,
+  ],
   templateUrl: './video.component.html',
   styleUrl: './video.component.css',
 })
@@ -26,7 +35,7 @@ export class VideoComponent {
     if (this.id > 0) {
       this.videoService.getOneVideo(this.id).subscribe((data) => {
         console.log(data);
-        
+
         this.video = data;
         this.videoService.getThumbnail(this.id).subscribe((data) => {
           this.url = data.url;

@@ -2,23 +2,12 @@
 <div class="video-thumbnail">
   @if(view=='home'){ @if (url!='' || url!=null) {
 
-  <img
-    class="thumbnail-image"
-    loading="lazy"
-    src="{{ url }}"
-    alt="no thumbnail"
-    [routerLink]="['/play', video.id]"
-  />
+  <img class="thumbnail-image" loading="lazy" src="{{ url }}" alt="no thumbnail" [routerLink]="['/play', video.id]" />
 
   }@if (url=='' || url==null) {
 
-  <img
-    class="thumbnail-image"
-    loading="lazy"
-    src="{{ noImageUrl }}"
-    alt="no thumbnail"
-    [routerLink]="['/play', video.id]"
-  />
+  <img class="thumbnail-image" loading="lazy" src="{{ noImageUrl }}" alt="no thumbnail"
+    [routerLink]="['/play', video.id]" />
 
   }
   <div class="thumbnail-details">
@@ -27,23 +16,12 @@
   </div>
   } @if(view=='panel'){ @if (url!='' || url!=null) {
 
-  <img
-    class="thumbnail-image"
-    loading="lazy"
-    src="{{ url }}"
-    alt="no thumbnail"
-    [routerLink]="['/play', video.id]"
-  />
+  <img class="thumbnail-image" loading="lazy" src="{{ url }}" alt="no thumbnail" [routerLink]="['/play', video.id]" />
 
   }@if (url=='' || url==null) {
 
-  <img
-    class="thumbnail-image"
-    loading="lazy"
-    src="{{ noImageUrl }}"
-    alt="no thumbnail"
-    [routerLink]="['/play', video.id]"
-  />
+  <img class="thumbnail-image" loading="lazy" src="{{ noImageUrl }}" alt="no thumbnail"
+    [routerLink]="['/play', video.id]" />
 
   }
   <div class="thumbnail-details">
@@ -55,8 +33,26 @@
 </div>
 } -->
 
-<div class="grid-container">
-  <img class="video-image" src="{{ url }}" alt="">
-  <h2 class="video-title">{{ video.title }}</h2>
+
+@if (video.id) {
+@if(view=='home'){
+<div class="card-grid-container">
+  <img [routerLink]="['/play', video.id]" class="video-image" src="{{ url||noImageUrl }}" alt="" loading="lazy">
+  <h2 class="video-title">{{ video.title|uppercase }}</h2>
   <p class="video-description">{{ video.description }}</p>
 </div>
+}
+
+@if(view=='panel'){
+<div class="card-grid-container-before">
+  <img [routerLink]="['/play', video.id]" class="video-image" src="{{ url||noImageUrl }}" alt="" loading="lazy">
+  <h2 class="video-title">{{ video.title|uppercase }}</h2>
+  <p class="video-description">{{ video.description }}</p>
+
+  <button class="hidden-button" mat-flat-button color="warn" (click)="delete()">
+    <mat-icon>delete</mat-icon>
+    Delete
+  </button>
+</div>
+}
+}

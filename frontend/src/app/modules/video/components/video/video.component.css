@@ -1,69 +1,28 @@
-.video-thumbnail {
-  /* Estilos para el contenedor del video */
-  display: grid;
-  place-items: center;
-  width: 300px;
-  height: 200px;
-  background-color: #f2f2f2;
-  border-radius: 8px;
-  padding: 16px;
-}
-
-.thumbnail-image {
-  /* Estilos para la imagen del video */
-  width: auto;
-  height: 200px;
-  border-radius: 8px;
-  position: relative;
-  cursor: pointer;
-}
-
-.thumbnail-details {
-  /* Estilos para los detalles del video */
-  margin-top: 16px;
-}
-
-.thumbnail-details h2 {
-  /* Estilos para el título del video */
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 8px;
-}
-
-.thumbnail-details p {
-  /* Estilos para la descripción del video */
-  font-size: 14px;
-  color: #666666;
-}
-
-.thumbnail-link {
-  /* Estilos para los enlaces del video */
-  margin-top: 16px;
-  text-decoration: none;
-  color: #007bff;
-  font-weight: bold;
-}
-
-
-/*  */
-
-.grid-container {
+.card-grid-container {
   /* Estilos para el contenedor de la grilla */
   display: grid;
-  grid-template-rows: 4fr;
-  gap: 16px;
-  margin-top: 16px;
+  grid-template-rows: repeat(4, 1fr);
+  height: 400px;
+  max-width: 425px;
+  margin: auto;
+}
+
+.card-grid-container-before {
+  /* Estilos para el contenedor de la grilla */
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  height: 400px;
+  max-width: 425px;
+  position: relative;
+  margin: auto;
 }
 
 .video-image {
   /* Estilos para la imagen del video */
   display: grid;
   grid-row: 2 span;
-  /* width: 100%;
-  height: 200px;
-  border-radius: 8px;
-  position: relative;
-  cursor: pointer; */
+  cursor: pointer;
+  margin: auto;
 }
 
 .video-title {
@@ -72,12 +31,46 @@
   grid-row: 1 span;
   font-size: 18px;
   font-weight: bold;
-  margin-bottom: 8px;
+  overflow: hidden;
 }
 
 .video-description {
   /* Estilos para los detalles del video */
   display: grid;
   grid-row: 1 span;
-  margin-top: 16px;
+  overflow: hidden;
+}
+
+.hidden-button {
+  display: none; /* Oculta el botón por defecto */
+  position: absolute; /* Establece el posicionamiento absoluto */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centra el botón */
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: scale-down;
+}
+
+.card-grid-container-before:hover .hidden-button {
+  display: block; /* Muestra el botón cuando se hace hover sobre el contenedor */
+}
+
+.card-grid-container-before::before {
+  content: ""; /* Crea un pseudo-elemento */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Color de fondo semitransparente */
+  opacity: 0; /* Oculta el pseudo-elemento por defecto */
+  transition: opacity 0.3s; /* Agrega una transición suave */
+}
+
+.card-grid-container-before:hover::before {
+  opacity: 1; /* Muestra el pseudo-elemento cuando se hace hover sobre el contenedor */
 }
