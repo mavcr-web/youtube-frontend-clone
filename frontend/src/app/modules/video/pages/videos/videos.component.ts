@@ -33,15 +33,19 @@ export class VideosComponent {
 
   list: any[] = [];
 
+  id: number = 0;
+
   ngOnInit() {
     this._activatedRoute.params.subscribe(({ id }) => {
       if (id == undefined) {
+        this.id = 0;
         this.videoService.getMyVideos().subscribe((data) => {
           this.list = data;
         });
       }
 
       if (id) {
+        this.id = parseInt(id);
         this.videoService.getChannelVideos(id).subscribe((data) => {
           this.list = data;
         });

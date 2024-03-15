@@ -44,7 +44,7 @@ export class PlayComponent {
   checkAspectRatio() {
     const video = document.getElementById('videoplayer') as HTMLVideoElement;
     if (video.videoWidth / video.videoHeight > 1.5) {
-      video.style.width = '80%';
+      video.style.width = '425px';
     } else {
       video.style.height = '80%';
     }

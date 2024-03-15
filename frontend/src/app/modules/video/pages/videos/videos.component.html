@@ -2,11 +2,9 @@
   <div class="grid-auto-resize">
     @for (item of list; track $index) {
 
-    <app-video
-      [video]="item"
-      [view]="(role$ | async) == 'admin' ? 'panel' : 'home'"
-      (videoEvent)="removeFromlist($event)"
-    />
+    <app-video [video]="item" [view]="
+      (role$ | async) == 'admin' ? 'panel' : id == 0 ? 'panel' :id > 0 ? 'home':'home'"
+      (videoEvent)="removeFromlist($event)" />
     }
   </div>
 </div>
