@@ -1,27 +1,22 @@
-<input
-  #input
-  id="input"
-  type="file"
-  accept=".mp4"
-  multiple="false"
-  style="display: none"
-  (change)="loadVideo($event)"
-/>
+<input #input id="input" type="file" accept=".mp4" multiple="false" style="display: none"
+  (change)="loadVideo($event)" />
 <canvas id="canvas" style="display: none"></canvas>
 
-<div class="grid-container">
-  <form [formGroup]="uploadForm" class="form">
-    @if (url) {
-    <video
-      id="video"
-      controls
-      style="width: 100%; height: auto"
-      src="{{ url }}"
-    ></video>
-    } @if (urlThumbnail) {
-    <img src="{{ urlThumbnail }}" alt="" />
-    }
+<!--  -->
 
+<div class="container">
+
+  @if (url) {
+  <div class="video2">
+    <video id="video" [volume]="0.5" controls src="{{ url }}"></video>
+  </div>
+  } @if (urlThumbnail) {
+  <div class="thumbnail2">
+    <img src="{{ urlThumbnail }}" alt="" />
+  </div>
+  }
+
+  <form [formGroup]="uploadForm" class="form">
     <mat-form-field>
       <mat-label>name</mat-label>
       <input type="text" formControlName="name" matInput placeholder="name" />
@@ -33,12 +28,7 @@
 
     <mat-form-field>
       <mat-label>description</mat-label>
-      <input
-        type="text"
-        formControlName="description"
-        matInput
-        placeholder="description"
-      />
+      <input type="text" formControlName="description" matInput placeholder="description" />
       @if (uploadForm.get('description')?.touched &&
       uploadForm.get('description')?.errors?.['required']) {
       <mat-error> description is required </mat-error>
@@ -54,38 +44,21 @@
       </mat-select>
     </mat-form-field>
 
-    <div>
-      <button
-        mat-fab
-        extended
-        color="warn"
-        [disabled]="input.value != ''"
-        (click)="openInput()"
-      >
+    <div class="buttons">
+      <button mat-fab extended color="warn" [disabled]="input.value != ''" (click)="openInput()">
         <mat-icon>add_circle_outline</mat-icon>
         Load
       </button>
 
-      <button
-        mat-fab
-        extended
-        color="warn"
-        [disabled]="video == undefined"
-        (click)="generateThumbnail(341.312, 191.984)"
-      >
+      <button mat-fab extended color="warn" [disabled]="video == undefined"
+        (click)="generateThumbnail(341.312, 191.984)">
         <mat-icon>add_circle_outline</mat-icon>
         Thumbnail
       </button>
 
-      <button
-        mat-fab
-        extended
-        color="primary"
-        [disabled]="
+      <button mat-fab extended color="primary" [disabled]="
           uploadForm.invalid || video == undefined || thumbnail == undefined
-        "
-        (click)="uploadVideo(visibility.value)"
-      >
+        " (click)="uploadVideo(visibility.value)">
         <mat-icon>add_circle_outline</mat-icon>
         Upload
       </button>

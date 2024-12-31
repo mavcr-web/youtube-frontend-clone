@@ -3,5 +3,5 @@ const server = 'localhost';
 
 export const environment = {
   production: true,
-  url: 'https://ybc.orientalmarketnicaragua.com',
+  url: 'https://youtube-backend.mavcr.com',
 };
